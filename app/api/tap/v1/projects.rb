@@ -41,10 +41,13 @@ module Tap
         end
         post do
           result = Project::Create.call(params: params[:project])
+
           if result.success?
             present result[:model]
           else
-            present result[:errors]
+            present({
+                      errors: result['result.contract.default'].errors.messages
+                    })
           end
         end
       end

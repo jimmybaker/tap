@@ -39,8 +39,22 @@ RSpec.describe 'API', type: :request do
           project_type: 'a'
         }
       }
-      projects = JSON.parse(body)
-      expect(projects).to_not be_empty
+      project = JSON.parse(body)
+      expect(project['name']).to eq('Cool Project')
+    end
+
+    it 'renders errors on invalid input' do
+      post '/api/v1/projects', params: {
+        project: {
+          name: 'Cool Project',
+          tags: %w[one two three],
+          project_type: 'd'
+        }
+      }
+
+      response = JSON.parse(body)
+      expect(response['errors']).to_not be_empty
+      expect(response['errors']['project_type']).to eq(['must be one of: a, b, c'])
     end
   end
 end
