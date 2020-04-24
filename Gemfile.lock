@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:jimmybaker/grape.git
+  remote: https://github.com/jimmybaker/grape.git
   revision: f005ceff9157f99a8cb892b5cc37e11d89136699
   branch: jimmy
   specs:
