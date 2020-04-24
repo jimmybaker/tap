@@ -33,8 +33,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dry-types'
 gem 'dry-validation', '0.11.1'
 gem 'trailblazer-rails'
-gem 'graphql'
-gem 'graphiql-rails'
 gem 'grape', git: 'git@github.com:jimmybaker/grape.git', branch: 'jimmy'
 
 group :development, :test do
@@ -70,5 +68,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'graphiql-rails', group: :development
