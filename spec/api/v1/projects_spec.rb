@@ -43,6 +43,22 @@ RSpec.describe 'API', type: :request do
       expect(project['name']).to eq('Cool Project')
     end
 
+    it 'renders errors on duplicate name' do
+      2.times do
+        post '/api/v1/projects', params: {
+          project: {
+            name: 'Cool Project',
+            tags: %w[one two three],
+            project_type: 'a'
+          }
+        }
+      end
+
+      response = JSON.parse(body)
+      expect(response['errors']).to_not be_empty
+      expect(response['errors']['name']).to eq(['name already taken'])
+    end
+
     it 'renders errors on invalid input' do
       post '/api/v1/projects', params: {
         project: {
