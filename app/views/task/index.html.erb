@@ -1,0 +1,35 @@
+<h3>Task 3</h3>
+<p>
+  -	In JavaScript - Create an array of objects Person. Each Person obj has AJAX fn talk(). Array has 10 Person objects in it. Make a call to talk() fn for each person when the current call is finished with success callback. 
+</p>
+<pre>
+<code>
+class Person {
+  talk() {
+    return fetch("/api/v1/projects").then((r) => r.json());
+  }
+}
+
+const people = [
+  new Person(),
+  new Person(),
+  new Person(),
+  new Person(),
+  new Person(),
+  new Person(),
+  new Person(),
+  new Person(),
+  new Person(),
+  new Person(),
+];
+
+function converse(callback) {
+  const promises = people.map((p) => p.talk());
+  Promise.all(promises).then(() => callback());
+}
+
+converse(() => alert("done talking"));
+
+</code>
+</pre>
+
